@@ -26,25 +26,25 @@ const addComment = async (event) => {
   }
 };
 
-const singlePost = async (event) => {
-  try {
-    console.log(event.target.id);
-    let id = event.target.id;
-    const response = await fetch(`/post/${id}`, {
-      method: "GET",
-    });
+// const singlePost = async (event) => {
+//   try {
+//     console.log(event.target.id);
+//     let id = event.target.id;
+//     const response = await fetch(`/post/${id}`, {
+//       method: "GET",
+//     });
 
-    if (response.ok) {
-      const postData = await response.json();
-      console.log("Viewing single post:", postData);
-    } else {
-      alert(response.statusText);
-    }
-  } catch (error) {
-    console.error("Error viewing post:", error);
-  }
-};
+//     if (response.ok) {
+//       const postData = await response.json();
+//       console.log("Viewing single post:", postData);
+//     } else {
+//       alert(response.statusText);
+//     }
+//   } catch (error) {
+//     console.error("Error viewing post:", error);
+//   }
+// };
 
-postCards.on("click", singlePost);
+// postCards.on("click", singlePost);
 commentBtn.on("click", addComment);
 

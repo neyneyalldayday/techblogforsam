@@ -11,13 +11,12 @@ router.get("/",  async (req, res) => {
           user_id: req.session.id,
         },
       });
-
+     
       const userPosts = userPostsData.map((post) => post.get({plain: true}))
     
         res.render("profile", {  userPosts , loggedIn });     
     } catch (error) {
-      console.error(" Error displaying login page: ", error);
-      console.log("Session data:", req.session);
+      console.error(" Error displaying login page: ", error);     
     }
   });
 

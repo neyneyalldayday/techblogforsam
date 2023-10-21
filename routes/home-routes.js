@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { BlogPost, User } = require("../models/index");
+const { BlogPost, User, BlogComment } = require("../models/index");
 
 
 
@@ -20,9 +20,21 @@ router.get("/post/:id", async (req, res) => {
   const postId = req.params.id;
   console.log(postId);
   try {
-    const post = await BlogPost.findByPk(postId);
+    const post = await BlogPost.findByPk(postId, {
+      include: [
+        User,
+        {
+          model: BlogComment,
+          include: [User],
+        }
+      ]
+    });
+    if(post){
+      const clickedPost = post.get({plain: true});
+      res.render("single-post", {clickedPost} );
+    }
 
-    res.render("single-post", { post });
+    
   } catch (error) {
     console.error(" Error displaying post: ", error);
     res.status(404).render("not-found");
