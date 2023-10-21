@@ -10,7 +10,7 @@ function validatePasswordLength(req, res, next) {
 
   const requireAuth = (req, res, next) => {
     if (!req.session.user_id) {
-       res.redirect("/login")
+       res.redirect("/log-in")
     } else {
       next();
     }

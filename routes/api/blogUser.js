@@ -8,13 +8,13 @@ router.post("/", async (req, res) => {
       username: req.body.username,
       password: req.body.password,
     });
-console.log(newUser.id, "what the hellllll")
+
     req.session.save(() => {
       req.session.user_id = newUser.id;
       req.session.username = newUser.username;
       req.session.loggedIn = true;
     });
-    console.log(newUser.id, "what the shiiiiiit")
+    
     res.json(newUser);
   } catch (error) {
     console.error("sign up unsuccessful: ", error);
@@ -60,6 +60,7 @@ router.post("/logout", async (req, res) => {
         console.error("Error destroying session:", err);
         res.status(500).send("Internal Server Error");
       } else {
+        req.session.loggedIn = false;
         res.redirect("/");
       }
     });
