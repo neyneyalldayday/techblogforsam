@@ -7,7 +7,7 @@
         <h2>{{clickedPost.title}}</h2>
       </div>
       <div class="col-6 name-date">
-        <p>{{clickedPost.username}} {{clickedPost.dateCreated}}</p>
+        <p>{{clickedPost.User.username}} {{clickedPost.dateCreated}}</p>
       </div>
     </div>
     <div class="row">
@@ -22,11 +22,14 @@
 
 <div class="card">
   <div class="card-body">
-    <div>
+    <form class="comment-section">
+      <input type="hidden" name="post-id" value="{{clickedPost.id}}"/>
+      <div>
       <label>Comment</label>
-      <input type="input" />
-      <button>Confirm</button>
+       <textarea name="comment-body" id="comment-steeze" ></textarea>
+      <button id="comment-btn">Confirm</button>
     </div>
+    </form>    
   </div>
 </div>
 
@@ -38,7 +41,7 @@
         <span>Comments</span>
       </div>
       <div class="prev-comments">
-        {{text}}
+        {{body}}
       </div>
     </div>
   </div>
